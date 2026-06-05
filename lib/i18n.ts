@@ -98,6 +98,12 @@ export const translations = {
       },
     ],
   },
+
+
+
+
+
+
   portfolio: {
     badge: { AZ: "Portfolio", EN: "Portfolio", RU: "Портфолио" },
     title: {
@@ -237,46 +243,96 @@ export const translations = {
           "/images/Portfolio/Slayt3.PNG"
         ],
       },
-      // {
-      //   title: "EduPath Startup Prezentasiya",
-      //   categoryKey: "slides" as const,
-      //   description: {
-      //     AZ: "Təhsil texnologiyaları startapı üçün yaradılmış prezentasiya. İnteraktiv elementlər və storytelling yanaşması ilə hazırlanmışdır.",
-      //     EN: "Presentation created for an education technology startup. Prepared with interactive elements and a storytelling approach.",
-      //     RU: "Презентация для стартапа в сфере образовательных технологий. Подготовлена с интерактивными элементами и подходом сторителлинга.",
-      //   },
-      //   tags: {
-      //     AZ: ["Startup", "Təhsil", "Storytelling"],
-      //     EN: ["Startup", "Education", "Storytelling"],
-      //     RU: ["Стартап", "Образование", "Сторителлинг"],
-      //   },
-      //   images: [
-      //     "/images/project-5.jpg",
-      //     "/images/project-5b.jpg",
-      //     "/images/project-5c.jpg",
-      //   ],
-      // },
-      // {
-      //   title: "CryptoWave Dashboard",
-      //   categoryKey: "websites" as const,
-      //   description: {
-      //     AZ: "Kriptovalyuta ticarət platforması üçün real-time dashboard. Dark tema, canlı qrafiklər və responsiv interfeysli dizayn.",
-      //     EN: "Real-time dashboard for a cryptocurrency trading platform. Dark theme, live charts and responsive interface design.",
-      //     RU: "Панель управления в реальном времени для платформы торговли криптовалютой. Тёмная тема, живые графики и адаптивный интерфейс.",
-      //   },
-      //   tags: {
-      //     AZ: ["Dashboard", "Real-time", "Dark UI"],
-      //     EN: ["Dashboard", "Real-time", "Dark UI"],
-      //     RU: ["Панель управления", "Реальное время", "Тёмный UI"],
-      //   },
-      //   images: [
-      //     "/images/project-6.jpg",
-      //     "/images/project-6b.jpg",
-      //     "/images/project-6c.jpg",
-      //   ],
-      // },
+      
+      
+         {
+        title: "Formula 1 Slide Design",
+        categoryKey: "slides" as const,
+        description: {
+          AZ: "Formula 1 təqdimatı üçün slide dizaynı",
+          EN: "Formula 1 presentation slide design",
+          RU: "Дизайн слайда для презентации Формулы 1",
+        },
+        tags: {
+          AZ: ["Formula1", "Brend təqdimatı", "Məhsul təqdimatı"],
+          EN: ["Formula1", "Brand Presentation", "Product Showcase"],
+          RU: ["Formula1", "Презентация бренда", "Презентация продукта"],
+        },
+        images: [
+          "/images/F1/Slayt1.JPG",
+          "/images/F1/Slayt2.JPG",
+          "/images/F1/Slayt3.JPG",
+          "/images/F1/Slayt4.JPG",
+          "/images/F1/Slayt5.JPG",
+          "/images/F1/Slayt6.JPG",
+          "/images/F1/Slayt7.JPG",
+          "/images/F1/Slayt8.JPG",
+          "/images/F1/Slayt9.JPG",
+          "/images/F1/Slayt10.JPG",
+          "/images/F1/Slayt11.JPG",
+          "/images/F1/Slayt12.JPG",
+          
+        ],
+      },
+
+        {
+        title: "Apple Slide Design",
+        categoryKey: "slides" as const,
+        description: {
+          AZ: "Apple iPhone 14 seriasının təqdimatı üçün slide dizaynı",
+          EN: "Apple iPhone 14 series presentation slide design",
+          RU: "Дизайн слайда для презентации Apple iPhone 14 series",
+        },
+        tags: {
+          AZ: ["Apple", "Brend təqdimatı", "Məhsul təqdimatı"],
+          EN: ["Apple", "Brand Presentation", "Product Showcase"],
+          RU: ["Apple", "Презентация бренда", "Презентация продукта"],
+        },
+        images: [
+          "/images/Apple/Slayt2.JPG",
+          "/images/Apple/Slayt3.JPG",
+          "/images/Apple/Slayt4.JPG",
+          "/images/Apple/Slayt5.JPG",
+          "/images/Apple/Slayt6.JPG",
+          "/images/Apple/Slayt7.JPG",
+          "/images/Apple/Slayt8.JPG",
+          "/images/Apple/Slayt9.JPG",
+          "/images/Apple/Slayt10.JPG",
+          "/images/Apple/Slayt11.JPG",
+          "/images/Apple/Slayt12.JPG",
+          "/images/Apple/Slayt13.JPG"
+        ],
+      },
+          {
+        title: "Mebel Mağazası Slide Design",
+        categoryKey: "slides" as const,
+        description: {
+          AZ: "Mebel mağazası təqdimatı üçün slide dizaynı",
+          EN: "Furniture store presentation slide design",
+          RU: "Дизайн слайда для презентации мебельного магазина",
+        },
+        tags: {
+          AZ: ["Mebel Mağazası", "Brend təqdimatı", "Məhsul təqdimatı"],
+          EN: ["Furniture Store", "Brand Presentation", "Product Showcase"],
+          RU: ["Мебель Магазина", "Презентация бренда", "Презентация продукта"],
+        },
+        images: [
+          "/images/DəbliMebel1/Slayt1.JPG",
+          "/images/DəbliMebel1/Slayt2.JPG",
+          "/images/DəbliMebel1/Slayt3.JPG",
+          "/images/DəbliMebel1/Slayt4.JPG",
+        ],
+      },
     ],
   },
+
+
+
+
+
+
+
+
   campaigns: {
     badge: { AZ: "Kampaniyalar", EN: "Campaigns", RU: "Кампании" },
     title: {
