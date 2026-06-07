@@ -259,12 +259,12 @@ export default function Portfolio() {
 
               {/* Thumbnail strip */}
               {selected.images.length > 1 && (
-                <div className="flex gap-2 px-8 pt-4">
+                <div className="flex gap-2 px-8 pt-4 overflow-x-auto scroll-smooth snap-x snap-mandatory [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
                   {selected.images.map((img, idx) => (
                     <button
                       key={idx}
                       onClick={() => setActiveImage(idx)}
-                      className={`relative h-16 w-24 flex-shrink-0 overflow-hidden rounded-lg border-2 transition-all ${
+                      className={`relative h-16 w-24 snap-center flex-shrink-0 overflow-hidden rounded-lg border-2 transition-all ${
                         idx === activeImage
                           ? "border-primary ring-1 ring-primary/30"
                           : "border-transparent opacity-60 hover:opacity-100"
@@ -333,14 +333,14 @@ export default function Portfolio() {
                     <h3 className="mb-4 text-lg font-bold text-foreground">
                       {t.relatedProjects[lang]}
                     </h3>
-                    <div className="flex gap-4 overflow-x-auto pb-4">
+                    <div className="flex gap-4 overflow-x-auto pb-4 scroll-smooth snap-x snap-mandatory [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
                       {relatedProjects.map((rp) => {
                         const rpIdx = projects.indexOf(rp);
                         return (
                           <button
                             key={rp.title}
                             onClick={() => openProject(rpIdx)}
-                            className="group flex-shrink-0 overflow-hidden rounded-xl border border-border bg-secondary transition-shadow hover:shadow-lg"
+                            className="group flex-shrink-0 snap-start overflow-hidden rounded-xl border border-border bg-secondary transition-shadow hover:shadow-lg"
                           >
                             <div className="relative h-28 w-48 overflow-hidden">
                               <img

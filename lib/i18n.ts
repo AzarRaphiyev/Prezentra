@@ -388,7 +388,6 @@ export const translations = {
           RU: ["Эжел", "Музыка", "Презентация бренда", "Презентация продукта"],
         },
         images: [
-          "/images/Ezhel/Slayt1.JPG",
           "/images/Ezhel/Slayt2.JPG",
           "/images/Ezhel/Slayt3.JPG",
           "/images/Ezhel/Slayt4.JPG",
@@ -415,7 +414,6 @@ export const translations = {
           RU: ["Найк", "Презентация бренда", "Презентация продукта"],
         },
         images: [
-          "/images/Nike/Slayt1.JPG",
           "/images/Nike/Slayt2.JPG",
           "/images/Nike/Slayt3.JPG",
           "/images/Nike/Slayt4.JPG",
@@ -464,7 +462,6 @@ export const translations = {
           RU: ["Порш", "Презентация бренда", "Презентация продукта"],
         },
         images: [
-          "/images/Porsche/Slayt1.JPG",
           "/images/Porsche/Slayt2.JPG",
           "/images/Porsche/Slayt3.JPG",
           "/images/Porsche/Slayt4.JPG",
