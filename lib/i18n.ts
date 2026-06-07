@@ -199,6 +199,34 @@ export const translations = {
           "./images/GreenProject/image9.PNG",
         ],
       },
+       {
+        title: "Gözəllik Salonu Website",
+        categoryKey: "websites" as const,
+        description: {
+          AZ: "Gözəllik salonu üçün hazırlanmış tam responsiv veb platformadır. Müştərilərə onlayn rezervasiya, xidmətlər haqqında məlumat əldə etmə və salonla rahat əlaqə imkanı yaradır. Layihə Next.js, Node.js və müasir UI komponentləri ilə sürətli, təhlükəsiz və istifadəçi dostu şəkildə hazırlanmışdır.",
+          EN: "A fully responsive web platform developed for a beauty salon. It allows customers to book appointments online, explore services, and easily connect with the salon. Built with Next.js, Node.js, and modern UI components to deliver a fast, secure, and user-friendly experience.",
+          RU: "Полностью адаптивная веб-платформа, разработанная для салона красоты. Позволяет клиентам онлайн записываться на услуги, знакомиться с сервисами и легко связываться с салоном. Проект создан с использованием Next.js, Node.js и современных UI-компонентов для обеспечения высокой скорости, безопасности и удобства использования.",
+        },
+        tags: {
+       AZ: ["Next.js", "Node.js", "Onlayn Rezervasiya"],
+       EN: ["Next.js", "Node.js", "Online Booking"],
+       RU: ["Next.js", "Node.js", "Онлайн-бронирование"],
+        },
+        images: [
+          "./images/GozellikSalonu/İmage1.JPG",
+          "./images/GozellikSalonu/image8.PNG",
+          "./images/GozellikSalonu/image9.PNG",
+          "./images/GozellikSalonu/image10.PNG",
+          "./images/GozellikSalonu/image11.PNG",
+          "./images/GozellikSalonu/image12.PNG",
+          "./images/GozellikSalonu/image2.PNG",
+          "./images/GozellikSalonu/image3.PNG",
+          "./images/GozellikSalonu/image4.PNG",
+          "./images/GozellikSalonu/image5.PNG",
+          "./images/GozellikSalonu/image6.PNG",
+          "./images/GozellikSalonu/image7.PNG"
+        ],
+      },
       {
         title: "Events Slide Design",
         categoryKey: "slides" as const,
