@@ -6,87 +6,83 @@ import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import { useLang } from "@/lib/lang-context";
 import { translations } from "@/lib/i18n";
 
-// Komponentinizin daxilində (return-dən əvvəl) bunları əlavə edin:
-const scrollRef = useRef<HTMLDivElement>(null);
-const [isDragging, setIsDragging] = useState(false);
-const [startX, setStartX] = useState(0);
-const [scrollLeft, setScrollLeft] = useState(0);
-
-// Mouse ilə basıb sürüşdürmək üçün funksiyalar
-const handleMouseDown = (e: React.MouseEvent) => {
-  if (!scrollRef.current) return;
-  setIsDragging(true);
-  setStartX(e.pageX - scrollRef.current.offsetLeft);
-  setScrollLeft(scrollRef.current.scrollLeft);
-};
-
-const handleMouseLeave = () => {
-  setIsDragging(false);
-};
-
-const handleMouseUp = () => {
-  setIsDragging(false);
-};
-
-const handleMouseMove = (e: React.MouseEvent) => {
-  if (!isDragging || !scrollRef.current) return;
-  e.preventDefault();
-  const x = e.pageX - scrollRef.current.offsetLeft;
-  const walk = (x - startX) * 2; // 2 rəqəmini artıraraq sürüşdürmə sürətini artıra bilərsiniz
-  scrollRef.current.scrollLeft = scrollLeft - walk;
-};
-
-// Mouse təkərliyi (wheel) ilə sağa-sola hərəkət etdirmək üçün
-const handleWheel = (e: React.WheelEvent) => {
-  if (scrollRef.current) {
-    scrollRef.current.scrollLeft += e.deltaY;
-  }
-};
-
-const relatedScrollRef = useRef<HTMLDivElement>(null);
-const [isRelatedDragging, setIsRelatedDragging] = useState(false);
-const [relatedStartX, setRelatedStartX] = useState(0);
-const [relatedScrollLeft, setRelatedScrollLeft] = useState(0);
-
-const handleRelatedMouseDown = (e: React.MouseEvent) => {
-  if (!relatedScrollRef.current) return;
-  setIsRelatedDragging(true);
-  setRelatedStartX(e.pageX - relatedScrollRef.current.offsetLeft);
-  setRelatedScrollLeft(relatedScrollRef.current.scrollLeft);
-};
-
-const handleRelatedMouseLeave = () => setIsRelatedDragging(false);
-const handleRelatedMouseUp = () => setIsRelatedDragging(false);
-
-const handleRelatedMouseMove = (e: React.MouseEvent) => {
-  if (!isRelatedDragging || !relatedScrollRef.current) return;
-  e.preventDefault();
-  const x = e.pageX - relatedScrollRef.current.offsetLeft;
-  const walk = (x - relatedStartX) * 2; // Sürüşdürmə sürəti
-  relatedScrollRef.current.scrollLeft = relatedScrollLeft - walk;
-};
-
-const handleRelatedWheel = (e: React.WheelEvent) => {
-  if (relatedScrollRef.current) {
-    relatedScrollRef.current.scrollLeft += e.deltaY;
-  }
-};
-
 type CategoryKey = "all" | "slides" | "websites";
 
 export default function Portfolio() {
   const lang = useLang();
   const t = translations.portfolio;
 
+  // ==== 1. ƏSAS STATE-LƏR ====
+  const [filter, setFilter] = useState<CategoryKey>("all");
+  const [selectedIdx, setSelectedIdx] = useState<number | null>(null);
+  const [activeImage, setActiveImage] = useState(0);
+
+  // ==== 2. THUMBNAIL (Kiçik şəkillər) SÜRÜŞDÜRMƏ MƏNTİQİ ====
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [isDragging, setIsDragging] = useState(false);
+  const [startX, setStartX] = useState(0);
+  const [scrollLeft, setScrollLeft] = useState(0);
+
+  const handleMouseDown = (e: React.MouseEvent) => {
+    if (!scrollRef.current) return;
+    setIsDragging(true);
+    setStartX(e.pageX - scrollRef.current.offsetLeft);
+    setScrollLeft(scrollRef.current.scrollLeft);
+  };
+
+  const handleMouseLeave = () => setIsDragging(false);
+  const handleMouseUp = () => setIsDragging(false);
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!isDragging || !scrollRef.current) return;
+    e.preventDefault();
+    const x = e.pageX - scrollRef.current.offsetLeft;
+    const walk = (x - startX) * 2; // Sürüşdürmə sürətini buradan tənzimləyin
+    scrollRef.current.scrollLeft = scrollLeft - walk;
+  };
+
+  const handleWheel = (e: React.WheelEvent) => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollLeft += e.deltaY;
+    }
+  };
+
+  // ==== 3. BƏNZƏR LAYİHƏLƏR (Related Projects) SÜRÜŞDÜRMƏ MƏNTİQİ ====
+  const relatedScrollRef = useRef<HTMLDivElement>(null);
+  const [isRelatedDragging, setIsRelatedDragging] = useState(false);
+  const [relatedStartX, setRelatedStartX] = useState(0);
+  const [relatedScrollLeft, setRelatedScrollLeft] = useState(0);
+
+  const handleRelatedMouseDown = (e: React.MouseEvent) => {
+    if (!relatedScrollRef.current) return;
+    setIsRelatedDragging(true);
+    setRelatedStartX(e.pageX - relatedScrollRef.current.offsetLeft);
+    setRelatedScrollLeft(relatedScrollRef.current.scrollLeft);
+  };
+
+  const handleRelatedMouseLeave = () => setIsRelatedDragging(false);
+  const handleRelatedMouseUp = () => setIsRelatedDragging(false);
+
+  const handleRelatedMouseMove = (e: React.MouseEvent) => {
+    if (!isRelatedDragging || !relatedScrollRef.current) return;
+    e.preventDefault();
+    const x = e.pageX - relatedScrollRef.current.offsetLeft;
+    const walk = (x - relatedStartX) * 2; // Sürüşdürmə sürətini buradan tənzimləyin
+    relatedScrollRef.current.scrollLeft = relatedScrollLeft - walk;
+  };
+
+  const handleRelatedWheel = (e: React.WheelEvent) => {
+    if (relatedScrollRef.current) {
+      relatedScrollRef.current.scrollLeft += e.deltaY;
+    }
+  };
+
+  // ==== 4. DATA VƏ FİLTRLƏMƏ MƏNTİQİ ====
   const categoryEntries: { key: CategoryKey; label: string }[] = [
     { key: "all", label: t.categories.all[lang] },
     { key: "slides", label: t.categories.slides[lang] },
     { key: "websites", label: t.categories.websites[lang] },
   ];
-
-  const [filter, setFilter] = useState<CategoryKey>("all");
-  const [selectedIdx, setSelectedIdx] = useState<number | null>(null);
-  const [activeImage, setActiveImage] = useState(0);
 
   const projects = t.projects;
 
@@ -122,11 +118,11 @@ export default function Portfolio() {
     );
   }
 
-  // Get category display name
   function getCategoryLabel(key: "slides" | "websites") {
     return key === "slides" ? t.categories.slides[lang] : t.categories.websites[lang];
   }
 
+  // ==== 5. RENDER (GÖRÜNÜŞ) ====
   return (
     <section id="portfolio" className="relative py-24 md:py-32">
       <div className="mx-auto max-w-7xl px-6">
@@ -174,7 +170,6 @@ export default function Portfolio() {
           >
             <AnimatePresence mode="popLayout">
               {filtered.map((project) => {
-                // Find original index in the full projects array
                 const globalIdx = projects.indexOf(project);
                 return (
                   <motion.div
@@ -248,7 +243,7 @@ export default function Portfolio() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed  inset-0 z-50 flex items-center justify-center bg-background/80 p-4 backdrop-blur-md"
+            className="fixed inset-0 z-50 flex items-center justify-center bg-background/80 p-4 backdrop-blur-md"
             onClick={() => setSelectedIdx(null)}
           >
             <motion.div
@@ -272,7 +267,7 @@ export default function Portfolio() {
               </button>
 
               {/* Image Gallery */}
-              <div className="relative  aspect-video w-full overflow-hidden bg-secondary">
+              <div className="relative aspect-video w-full overflow-hidden bg-secondary">
                 <AnimatePresence mode="wait">
                   <motion.img
                     key={activeImage}
@@ -305,7 +300,7 @@ export default function Portfolio() {
                     </button>
 
                     {/* Dots indicator */}
-                    <div className=" absolute bottom-3 left-1/2 z-10 flex -translate-x-1/2 items-center gap-1.5">
+                    <div className="absolute bottom-3 left-1/2 z-10 flex -translate-x-1/2 items-center gap-1.5">
                       {selected.images.map((_, idx) => (
                         <button
                           key={idx}
@@ -324,37 +319,35 @@ export default function Portfolio() {
               </div>
 
               {/* Thumbnail strip */}
-             {selected.images.length > 1 && (
-  <div
-    ref={scrollRef}
-    onMouseDown={handleMouseDown}
-    onMouseLeave={handleMouseLeave}
-    onMouseUp={handleMouseUp}
-    onMouseMove={handleMouseMove}
-    onWheel={handleWheel}
-    // Qeyd: "snap-x snap-mandatory" mouse ilə sürüşdürmə zamanı ilişmələr yarada bilər deyə onları sildik
-    className="flex gap-2 px-8 pt-4 overflow-x-auto scroll-smooth [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] cursor-grab active:cursor-grabbing select-none"
-  >
-    {selected.images.map((img, idx) => (
-      <button
-        key={idx}
-        onClick={() => setActiveImage(idx)}
-        className={`relative h-16 w-24 flex-shrink-0 overflow-hidden rounded-lg border-2 transition-all ${
-          idx === activeImage
-            ? "border-primary ring-1 ring-primary/30"
-            : "border-transparent opacity-60 hover:opacity-100"
-        }`}
-      >
-        <img
-          src={img || "/placeholder.svg"}
-          alt={`${selected.title} thumbnail ${idx + 1}`}
-          className="h-full w-full object-cover pointer-events-none" 
-          // pointer-events-none -> Şəklin özünün sürüklənməsinə (native browser drag) mane olmaq üçün vacibdir
-        />
-      </button>
-    ))}
-  </div>
-)}
+              {selected.images.length > 1 && (
+                <div
+                  ref={scrollRef}
+                  onMouseDown={handleMouseDown}
+                  onMouseLeave={handleMouseLeave}
+                  onMouseUp={handleMouseUp}
+                  onMouseMove={handleMouseMove}
+                  onWheel={handleWheel}
+                  className="flex gap-2 px-8 pt-4 overflow-x-auto scroll-smooth [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] cursor-grab active:cursor-grabbing select-none"
+                >
+                  {selected.images.map((img, idx) => (
+                    <button
+                      key={idx}
+                      onClick={() => setActiveImage(idx)}
+                      className={`relative h-16 w-24 flex-shrink-0 overflow-hidden rounded-lg border-2 transition-all ${
+                        idx === activeImage
+                          ? "border-primary ring-1 ring-primary/30"
+                          : "border-transparent opacity-60 hover:opacity-100"
+                      }`}
+                    >
+                      <img
+                        src={img || "/placeholder.svg"}
+                        alt={`${selected.title} thumbnail ${idx + 1}`}
+                        className="h-full w-full object-cover pointer-events-none"
+                      />
+                    </button>
+                  ))}
+                </div>
+              )}
 
               <div className="p-8">
                 <span className="mb-3 inline-block rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary">
@@ -404,48 +397,46 @@ export default function Portfolio() {
                 </a>
 
                 {/* Related Projects */}
-               {relatedProjects.length > 0 && (
-  <div className="mt-10 border-t border-border pt-8">
-    <h3 className="mb-4 text-lg font-bold text-foreground">
-      {t.relatedProjects[lang]}
-    </h3>
-    <div
-      ref={relatedScrollRef}
-      onMouseDown={handleRelatedMouseDown}
-      onMouseLeave={handleRelatedMouseLeave}
-      onMouseUp={handleRelatedMouseUp}
-      onMouseMove={handleRelatedMouseMove}
-      onWheel={handleRelatedWheel}
-      className="flex gap-4 overflow-x-auto pb-4 scroll-smooth [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] cursor-grab active:cursor-grabbing select-none"
-    >
-      {relatedProjects.map((rp) => {
-        const rpIdx = projects.indexOf(rp);
-        return (
-          <button
-            key={rp.title}
-            onClick={() => openProject(rpIdx)}
-            className="group flex-shrink-0 overflow-hidden rounded-xl border border-border bg-secondary transition-shadow hover:shadow-lg"
-          >
-            <div className="relative h-28 w-48 overflow-hidden">
-              <img
-                src={rp.images[0] || "/placeholder.svg"}
-                alt={rp.title}
-                // Mouse ilə sürüşdürəndə şəkli kənara çəkməsin deyə pointer-events-none əlavə edildi
-                className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105 pointer-events-none"
-              />
-            </div>
-            <div className="p-3 text-left">
-              {/* Mətni seçməmək üçün pointer-events-none əlavə edildi */}
-              <p className="text-sm font-semibold text-foreground pointer-events-none">
-                {rp.title}
-              </p>
-            </div>
-          </button>
-        );
-      })}
-    </div>
-  </div>
-)}
+                {relatedProjects.length > 0 && (
+                  <div className="mt-10 border-t border-border pt-8">
+                    <h3 className="mb-4 text-lg font-bold text-foreground">
+                      {t.relatedProjects[lang]}
+                    </h3>
+                    <div
+                      ref={relatedScrollRef}
+                      onMouseDown={handleRelatedMouseDown}
+                      onMouseLeave={handleRelatedMouseLeave}
+                      onMouseUp={handleRelatedMouseUp}
+                      onMouseMove={handleRelatedMouseMove}
+                      onWheel={handleRelatedWheel}
+                      className="flex gap-4 overflow-x-auto pb-4 scroll-smooth [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] cursor-grab active:cursor-grabbing select-none"
+                    >
+                      {relatedProjects.map((rp) => {
+                        const rpIdx = projects.indexOf(rp);
+                        return (
+                          <button
+                            key={rp.title}
+                            onClick={() => openProject(rpIdx)}
+                            className="group flex-shrink-0 overflow-hidden rounded-xl border border-border bg-secondary transition-shadow hover:shadow-lg"
+                          >
+                            <div className="relative h-28 w-48 overflow-hidden">
+                              <img
+                                src={rp.images[0] || "/placeholder.svg"}
+                                alt={rp.title}
+                                className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105 pointer-events-none"
+                              />
+                            </div>
+                            <div className="p-3 text-left">
+                              <p className="text-sm font-semibold text-foreground pointer-events-none">
+                                {rp.title}
+                              </p>
+                            </div>
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+                )}
               </div>
             </motion.div>
           </motion.div>
