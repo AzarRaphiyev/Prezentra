@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { motion, AnimatePresence, LayoutGroup } from "framer-motion";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import { useLang } from "@/lib/lang-context";
@@ -16,6 +16,15 @@ export default function Portfolio() {
   const [filter, setFilter] = useState<CategoryKey>("all");
   const [selectedIdx, setSelectedIdx] = useState<number | null>(null);
   const [activeImage, setActiveImage] = useState(0);
+
+  // Pagination State-ləri
+  const [currentPage, setCurrentPage] = useState(1);
+  const ITEMS_PER_PAGE = 6;
+
+  // Filtr dəyişdikdə peginasiyanı 1-ci səhifəyə qaytarmaq üçün
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [filter]);
 
   // ==== 2. THUMBNAIL (Kiçik şəkillər) SÜRÜŞDÜRMƏ MƏNTİQİ ====
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -37,7 +46,7 @@ export default function Portfolio() {
     if (!isDragging || !scrollRef.current) return;
     e.preventDefault();
     const x = e.pageX - scrollRef.current.offsetLeft;
-    const walk = (x - startX) * 2; // Sürüşdürmə sürətini buradan tənzimləyin
+    const walk = (x - startX) * 2;
     scrollRef.current.scrollLeft = scrollLeft - walk;
   };
 
@@ -67,7 +76,7 @@ export default function Portfolio() {
     if (!isRelatedDragging || !relatedScrollRef.current) return;
     e.preventDefault();
     const x = e.pageX - relatedScrollRef.current.offsetLeft;
-    const walk = (x - relatedStartX) * 2; // Sürüşdürmə sürətini buradan tənzimləyin
+    const walk = (x - relatedStartX) * 2;
     relatedScrollRef.current.scrollLeft = relatedScrollLeft - walk;
   };
 
@@ -90,6 +99,19 @@ export default function Portfolio() {
     filter === "all"
       ? projects
       : projects.filter((p) => p.categoryKey === filter);
+
+  // --- PEGİNASİYA HESABLAMALARI ---
+  const totalPages = Math.ceil(filtered.length / ITEMS_PER_PAGE);
+  const paginatedProjects = filtered.slice(
+    (currentPage - 1) * ITEMS_PER_PAGE,
+    currentPage * ITEMS_PER_PAGE
+  );
+
+  const handlePageChange = (newPage: number) => {
+    setCurrentPage(newPage);
+    // Səhifə dəyişəndə portfolionun yuxarısına scroll edir
+    document.getElementById("portfolio")?.scrollIntoView({ behavior: "smooth" });
+  };
 
   const selected = selectedIdx !== null ? projects[selectedIdx] : null;
 
@@ -122,9 +144,16 @@ export default function Portfolio() {
     return key === "slides" ? t.categories.slides[lang] : t.categories.websites[lang];
   }
 
+  // Peginasiya tərcümələri üçün köməkçi
+  const paginationTexts = {
+    AZ: { prev: "Əvvəlki", next: "Növbəti", page: "Səhifə" },
+    EN: { prev: "Previous", next: "Next", page: "Page" },
+    RU: { prev: "Назад", next: "Вперед", page: "Страница" }
+  };
+
   // ==== 5. RENDER (GÖRÜNÜŞ) ====
   return (
-    <section id="portfolio" className="relative py-24 md:py-32">
+    <section id="portfolio" className="relative py-24 md:py-32 scroll-mt-20">
       <div className="mx-auto max-w-7xl px-6">
         {/* Header */}
         <motion.div
@@ -162,14 +191,15 @@ export default function Portfolio() {
           ))}
         </div>
 
-        {/* Grid */}
+        {/* Grid (Yalnız 6 layihə görünəcək) */}
         <LayoutGroup>
           <motion.div
             layout
             className="grid gap-6 md:grid-cols-2 lg:grid-cols-3"
           >
             <AnimatePresence mode="popLayout">
-              {filtered.map((project) => {
+              {paginatedProjects.map((project) => {
+                // Modal üçün qlobal index tapırıq
                 const globalIdx = projects.indexOf(project);
                 return (
                   <motion.div
@@ -234,6 +264,36 @@ export default function Portfolio() {
             </AnimatePresence>
           </motion.div>
         </LayoutGroup>
+
+        {/* Peginasiya Düymələri (Əgər 1-dən çox səhifə varsa görünəcək) */}
+        {totalPages > 1 && (
+          <motion.div 
+            layout
+            className="mt-12 flex items-center justify-center gap-4"
+          >
+            <button
+              onClick={() => handlePageChange(currentPage - 1)}
+              disabled={currentPage === 1}
+              className="flex items-center gap-2 rounded-full border border-border bg-card px-5 py-2.5 text-sm font-medium text-foreground shadow-sm transition-all hover:bg-secondary disabled:pointer-events-none disabled:opacity-50"
+            >
+              <ChevronLeft className="h-4 w-4" />
+              {paginationTexts[lang as keyof typeof paginationTexts].prev}
+            </button>
+            
+            <span className="text-sm font-medium text-muted-foreground">
+               {currentPage} / {totalPages}
+            </span>
+            
+            <button
+              onClick={() => handlePageChange(currentPage + 1)}
+              disabled={currentPage === totalPages}
+              className="flex items-center gap-2 rounded-full border border-border bg-card px-5 py-2.5 text-sm font-medium text-foreground shadow-sm transition-all hover:bg-secondary disabled:pointer-events-none disabled:opacity-50"
+            >
+              {paginationTexts[lang as keyof typeof paginationTexts].next}
+              <ChevronRight className="h-4 w-4" />
+            </button>
+          </motion.div>
+        )}
       </div>
 
       {/* Detail Modal */}
