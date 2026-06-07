@@ -109,7 +109,6 @@ export default function Portfolio() {
 
   const handlePageChange = (newPage: number) => {
     setCurrentPage(newPage);
-    // Səhifə dəyişəndə portfolionun yuxarısına scroll edir
     document.getElementById("portfolio")?.scrollIntoView({ behavior: "smooth" });
   };
 
@@ -144,7 +143,7 @@ export default function Portfolio() {
     return key === "slides" ? t.categories.slides[lang] : t.categories.websites[lang];
   }
 
-  // Peginasiya tərcümələri üçün köməkçi
+  // Peginasiya tərcümələri üçün köməkçi (Aria-label üçün)
   const paginationTexts = {
     AZ: { prev: "Əvvəlki", next: "Növbəti", page: "Səhifə" },
     EN: { prev: "Previous", next: "Next", page: "Page" },
@@ -191,7 +190,7 @@ export default function Portfolio() {
           ))}
         </div>
 
-        {/* Grid (Yalnız 6 layihə görünəcək) */}
+        {/* Grid */}
         <LayoutGroup>
           <motion.div
             layout
@@ -199,7 +198,6 @@ export default function Portfolio() {
           >
             <AnimatePresence mode="popLayout">
               {paginatedProjects.map((project) => {
-                // Modal üçün qlobal index tapırıq
                 const globalIdx = projects.indexOf(project);
                 return (
                   <motion.div
@@ -222,7 +220,6 @@ export default function Portfolio() {
                       }
                     }}
                   >
-                    {/* Image */}
                     <div className="relative aspect-[16/10] overflow-hidden bg-secondary">
                       <img
                         src={project.images[0] || "/placeholder.svg"}
@@ -230,7 +227,6 @@ export default function Portfolio() {
                         className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-card/80 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
-                      {/* Image count badge */}
                       <div className="absolute bottom-3 right-3 flex items-center gap-1 rounded-full bg-background/70 px-2.5 py-1 text-xs font-medium text-foreground backdrop-blur-sm">
                         <svg
                           width="14"
@@ -265,32 +261,51 @@ export default function Portfolio() {
           </motion.div>
         </LayoutGroup>
 
-        {/* Peginasiya Düymələri (Əgər 1-dən çox səhifə varsa görünəcək) */}
+        {/* MÜASİR NARINCI PEGİNASİYA */}
         {totalPages > 1 && (
           <motion.div 
             layout
-            className="mt-12 flex items-center justify-center gap-4"
+            className="mt-14 flex flex-wrap items-center justify-center gap-2 sm:gap-3"
           >
+            {/* Prev Düyməsi */}
             <button
               onClick={() => handlePageChange(currentPage - 1)}
               disabled={currentPage === 1}
-              className="flex items-center gap-2 rounded-full border border-border bg-card px-5 py-2.5 text-sm font-medium text-foreground shadow-sm transition-all hover:bg-secondary disabled:pointer-events-none disabled:opacity-50"
+              className="flex h-10 w-10 sm:h-11 sm:w-11 items-center justify-center rounded-full border border-border bg-card text-muted-foreground shadow-sm transition-all hover:bg-secondary hover:text-foreground disabled:pointer-events-none disabled:opacity-40"
+              aria-label={paginationTexts[lang as keyof typeof paginationTexts].prev}
             >
-              <ChevronLeft className="h-4 w-4" />
-              {paginationTexts[lang as keyof typeof paginationTexts].prev}
+              <ChevronLeft className="h-5 w-5" />
             </button>
             
-            <span className="text-sm font-medium text-muted-foreground">
-               {currentPage} / {totalPages}
-            </span>
+            {/* Rəqəmli Düymələr */}
+            <div className="flex items-center gap-1.5 sm:gap-2">
+              {Array.from({ length: totalPages }).map((_, index) => {
+                const pageNumber = index + 1;
+                const isActive = currentPage === pageNumber;
+                return (
+                  <button
+                    key={pageNumber}
+                    onClick={() => handlePageChange(pageNumber)}
+                    className={`flex h-10 w-10 sm:h-11 sm:w-11 items-center justify-center rounded-full text-sm font-semibold transition-all duration-300 ${
+                      isActive
+                        ? "bg-orange-500 text-white shadow-md shadow-orange-500/30 scale-105"
+                        : "border border-border bg-card text-muted-foreground hover:bg-secondary hover:text-foreground"
+                    }`}
+                  >
+                    {pageNumber}
+                  </button>
+                );
+              })}
+            </div>
             
+            {/* Next Düyməsi */}
             <button
               onClick={() => handlePageChange(currentPage + 1)}
               disabled={currentPage === totalPages}
-              className="flex items-center gap-2 rounded-full border border-border bg-card px-5 py-2.5 text-sm font-medium text-foreground shadow-sm transition-all hover:bg-secondary disabled:pointer-events-none disabled:opacity-50"
+              className="flex h-10 w-10 sm:h-11 sm:w-11 items-center justify-center rounded-full border border-border bg-card text-muted-foreground shadow-sm transition-all hover:bg-secondary hover:text-foreground disabled:pointer-events-none disabled:opacity-40"
+              aria-label={paginationTexts[lang as keyof typeof paginationTexts].next}
             >
-              {paginationTexts[lang as keyof typeof paginationTexts].next}
-              <ChevronRight className="h-4 w-4" />
+              <ChevronRight className="h-5 w-5" />
             </button>
           </motion.div>
         )}
@@ -317,7 +332,6 @@ export default function Portfolio() {
               aria-modal="true"
               aria-label={selected.title}
             >
-              {/* Close */}
               <button
                 onClick={() => setSelectedIdx(null)}
                 className="absolute right-4 top-4 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-background/80 text-foreground backdrop-blur-sm transition-colors hover:bg-secondary"
@@ -326,7 +340,6 @@ export default function Portfolio() {
                 <X className="h-5 w-5" />
               </button>
 
-              {/* Image Gallery */}
               <div className="relative aspect-video w-full overflow-hidden bg-secondary">
                 <AnimatePresence mode="wait">
                   <motion.img
@@ -341,7 +354,6 @@ export default function Portfolio() {
                   />
                 </AnimatePresence>
 
-                {/* Navigation arrows */}
                 {selected.images.length > 1 && (
                   <>
                     <button
@@ -359,7 +371,6 @@ export default function Portfolio() {
                       <ChevronRight className="h-5 w-5" />
                     </button>
 
-                    {/* Dots indicator */}
                     <div className="absolute bottom-3 left-1/2 z-10 flex -translate-x-1/2 items-center gap-1.5">
                       {selected.images.map((_, idx) => (
                         <button
@@ -378,7 +389,6 @@ export default function Portfolio() {
                 )}
               </div>
 
-              {/* Thumbnail strip */}
               {selected.images.length > 1 && (
                 <div
                   ref={scrollRef}
@@ -420,7 +430,6 @@ export default function Portfolio() {
                   {selected.description[lang]}
                 </p>
 
-                {/* Tags */}
                 <div className="mb-8 flex flex-wrap gap-2">
                   {selected.tags[lang].map((tag) => (
                     <span
@@ -432,7 +441,6 @@ export default function Portfolio() {
                   ))}
                 </div>
 
-                {/* CTA button */}
                 <a
                   href="#contact"
                   onClick={() => setSelectedIdx(null)}
@@ -456,7 +464,6 @@ export default function Portfolio() {
                   </svg>
                 </a>
 
-                {/* Related Projects */}
                 {relatedProjects.length > 0 && (
                   <div className="mt-10 border-t border-border pt-8">
                     <h3 className="mb-4 text-lg font-bold text-foreground">
