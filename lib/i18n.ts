@@ -242,10 +242,8 @@ export const translations = {
           "/images/Portfolio/Slayt2.PNG",
           "/images/Portfolio/Slayt3.PNG"
         ],
-      },
-      
-      
-         {
+      }, 
+      {
         title: "Formula 1 Slide Design",
         categoryKey: "slides" as const,
         description: {
@@ -274,8 +272,7 @@ export const translations = {
           
         ],
       },
-
-        {
+      {
         title: "Apple Slide Design",
         categoryKey: "slides" as const,
         description: {
@@ -303,7 +300,7 @@ export const translations = {
           "/images/Apple/Slayt13.JPG"
         ],
       },
-          {
+      {
         title: "Mebel Mağazası Slide Design",
         categoryKey: "slides" as const,
         description: {
@@ -317,10 +314,190 @@ export const translations = {
           RU: ["Мебель Магазина", "Презентация бренда", "Презентация продукта"],
         },
         images: [
-          "/images/DəbliMebel1/Slayt1.JPG",
-          "/images/DəbliMebel1/Slayt2.JPG",
-          "/images/DəbliMebel1/Slayt3.JPG",
-          "/images/DəbliMebel1/Slayt4.JPG",
+          "/images/DəbliMebel/Slayt1.JPG",
+          "/images/DəbliMebel/Slayt2.JPG",
+          "/images/DəbliMebel/Slayt3.JPG",
+          "/images/DəbliMebel/Slayt4.JPG",
+        ],
+      },
+      {
+        title: "Disney Slide Design",
+        categoryKey: "slides" as const,
+        description: {
+          AZ: "Disney təqdimatı üçün slide dizaynı",
+          EN: "Disney presentation slide design",
+          RU: "Дизайн слайда для презентации Дисней",
+        },
+        tags: {
+          AZ: ["Disney", "Brend təqdimatı", "Məhsul təqdimatı"],
+          EN: ["Disney", "Brand Presentation", "Product Showcase"],
+          RU: ["Дисней", "Презентация бренда", "Презентация продукта"],
+        },
+        images: [
+          "/images/Disney/Slayt1.JPG",
+          "/images/Disney/Slayt2.JPG",
+          "/images/Disney/Slayt3.JPG",
+          "/images/Disney/Slayt4.JPG",
+          "/images/Disney/Slayt5.JPG",
+          "/images/Disney/Slayt6.JPG",
+          "/images/Disney/Slayt7.JPG",
+          "/images/Disney/Slayt8.JPG",
+          "/images/Disney/Slayt9.JPG",
+          "/images/Disney/Slayt10.JPG",
+          "/images/Disney/Slayt11.JPG",
+          "/images/Disney/Slayt12.JPG",
+          "/images/Disney/Slayt13.JPG",
+          "/images/Disney/Slayt14.JPG",
+          "/images/Disney/Slayt15.JPG",
+          "/images/Disney/Slayt16.JPG",
+          "/images/Disney/Slayt17.JPG",
+          "/images/Disney/Slayt18.JPG",
+          "/images/Disney/Slayt19.JPG",
+          "/images/Disney/Slayt20.JPG",
+          "/images/Disney/Slayt21.JPG",
+          "/images/Disney/Slayt22.JPG",
+          "/images/Disney/Slayt23.JPG",
+          "/images/Disney/Slayt24.JPG",
+          "/images/Disney/Slayt25.JPG",
+          "/images/Disney/Slayt26.JPG",
+          "/images/Disney/Slayt27.JPG",
+          "/images/Disney/Slayt28.JPG",
+          "/images/Disney/Slayt29.JPG",
+          "/images/Disney/Slayt30.JPG",
+          "/images/Disney/Slayt31.JPG",
+          "/images/Disney/Slayt32.JPG",
+          "/images/Disney/Slayt33.JPG",
+          "/images/Disney/Slayt34.JPG",
+          "/images/Disney/Slayt35.JPG",
+          "/images/Disney/Slayt36.JPG",
+          "/images/Disney/Slayt37.JPG",
+          "/images/Disney/Slayt38.JPG",   
+        ],
+      },
+      {
+        title: "Ezhel Slide Design",
+        categoryKey: "slides" as const,
+        description: {
+          AZ: "Ezhel təqdimatı üçün slide dizaynı",
+          EN: "Ezhel presentation slide design",
+          RU: "Дизайн слайда для презентации Эжел",
+        },
+        tags: {
+          AZ: ["Ezhel", "Musiqi", "Brend təqdimatı", "Məhsul təqdimatı"],
+          EN: ["Ezhel", "Music", "Brand Presentation", "Product Showcase"],
+          RU: ["Эжел", "Музыка", "Презентация бренда", "Презентация продукта"],
+        },
+        images: [
+          "/images/Ezhel/Slayt1.JPG",
+          "/images/Ezhel/Slayt2.JPG",
+          "/images/Ezhel/Slayt3.JPG",
+          "/images/Ezhel/Slayt4.JPG",
+          "/images/Ezhel/Slayt5.JPG",
+          "/images/Ezhel/Slayt6.JPG",
+          "/images/Ezhel/Slayt7.JPG",
+          "/images/Ezhel/Slayt8.JPG",
+          "/images/Ezhel/Slayt9.JPG",
+          "/images/Ezhel/Slayt10.JPG",
+          "/images/Ezhel/Slayt11.JPG"
+        ],
+      },
+      {
+        title: "Nike Slide Design",
+        categoryKey: "slides" as const,
+        description: {
+          AZ: "Nike təqdimatı üçün slide dizaynı",
+          EN: "Nike presentation slide design",
+          RU: "Дизайн слайда для презентации Найк",
+        },
+        tags: {
+          AZ: ["Nike", "Brend təqdimatı", "Məhsul təqdimatı"],
+          EN: ["Nike", "Brand Presentation", "Product Showcase"],
+          RU: ["Найк", "Презентация бренда", "Презентация продукта"],
+        },
+        images: [
+          "/images/Nike/Slayt1.JPG",
+          "/images/Nike/Slayt2.JPG",
+          "/images/Nike/Slayt3.JPG",
+          "/images/Nike/Slayt4.JPG",
+          "/images/Nike/Slayt5.JPG",
+          "/images/Nike/Slayt6.JPG",
+          "/images/Nike/Slayt7.JPG",
+          "/images/Nike/Slayt8.JPG",
+          "/images/Nike/Slayt9.JPG",
+          "/images/Nike/Slayt10.JPG"
+        ],
+      },
+      {
+        title: "Peaky Blinders Slide Design",
+        categoryKey: "slides" as const,
+        description: {
+          AZ: "Peaky Blinders təqdimatı üçün slide dizaynı",
+          EN: "Peaky Blinders presentation slide design",
+          RU: "Дизайн слайда для презентации Пики Блайндерс",
+        },
+        tags: {
+          AZ: ["Peaky Blinders", "Brend təqdimatı", "Məhsul təqdimatı"],
+          EN: ["Peaky Blinders", "Brand Presentation", "Product Showcase"],
+          RU: ["Пики Блайндерс", "Презентация бренда", "Презентация продукта"],
+        },
+        images: [
+          "/images/PeakyBlinders/Slayt1.JPG",
+          "/images/PeakyBlinders/Slayt2.JPG",
+          "/images/PeakyBlinders/Slayt3.JPG",
+          "/images/PeakyBlinders/Slayt4.JPG",
+          "/images/PeakyBlinders/Slayt5.JPG",
+          "/images/PeakyBlinders/Slayt6.JPG",
+          "/images/PeakyBlinders/Slayt7.JPG"
+        ],
+      },
+      {
+        title: "Porsche Slide Design",
+        categoryKey: "slides" as const,
+        description: {
+          AZ: "Porsche təqdimatı üçün slide dizaynı",
+          EN: "Porsche presentation slide design",
+          RU: "Дизайн слайда для презентации Порш",
+        },
+        tags: {
+          AZ: ["Porsche", "Brend təqdimatı", "Məhsul təqdimatı"],
+          EN: ["Porsche", "Brand Presentation", "Product Showcase"],
+          RU: ["Порш", "Презентация бренда", "Презентация продукта"],
+        },
+        images: [
+          "/images/Porsche/Slayt1.JPG",
+          "/images/Porsche/Slayt2.JPG",
+          "/images/Porsche/Slayt3.JPG",
+          "/images/Porsche/Slayt4.JPG",
+          "/images/Porsche/Slayt5.JPG",
+          "/images/Porsche/Slayt6.JPG",
+          "/images/Porsche/Slayt7.JPG",
+          "/images/Porsche/Slayt8.JPG",
+          "/images/Porsche/Slayt9.JPG",
+          "/images/Porsche/Slayt10.JPG",
+          "/images/Porsche/Slayt11.JPG",
+          "/images/Porsche/Slayt12.JPG"
+        ],
+      },
+      {
+        title: "Tur Şirkəti Slide Design",
+        categoryKey: "slides" as const,
+        description: {
+          AZ: "Tur şirkəti təqdimatı üçün slide dizaynı",
+          EN: "Tour company presentation slide design",
+          RU: "Дизайн слайда для презентации туроператора",
+        },
+        tags: {
+          AZ: ["Tur Şirkəti", "Brend təqdimatı", "Məhsul təqdimatı"],
+          EN: ["Tour Company", "Brand Presentation", "Product Showcase"],
+          RU: ["Туроператор", "Презентация бренда", "Презентация продукта"],
+        },
+        images: [
+          "/images/TurŞirkəti/Slayt1.JPG",
+          "/images/TurŞirkəti/Slayt2.JPG",
+          "/images/TurŞirkəti/Slayt3.JPG",
+          "/images/TurŞirkəti/Slayt4.JPG",
+          "/images/TurŞirkəti/Slayt5.JPG",
+          "/images/TurŞirkəti/Slayt6.JPG"
         ],
       },
     ],
