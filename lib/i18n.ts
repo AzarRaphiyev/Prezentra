@@ -489,12 +489,12 @@ export const translations = {
           RU: ["Туроператор", "Презентация бренда", "Презентация продукта"],
         },
         images: [
-          "/images/TurŞirkəti/Slayt1.JPG",
-          "/images/TurŞirkəti/Slayt2.JPG",
-          "/images/TurŞirkəti/Slayt3.JPG",
-          "/images/TurŞirkəti/Slayt4.JPG",
-          "/images/TurŞirkəti/Slayt5.JPG",
-          "/images/TurŞirkəti/Slayt6.JPG"
+          "/images/Tur/Slayt1.JPG",
+          "/images/Tur/Slayt2.JPG",
+          "/images/Tur/Slayt3.JPG",
+          "/images/Tur/Slayt4.JPG",
+          "/images/Tur/Slayt5.JPG",
+          "/images/Tur/Slayt6.JPG"
         ],
       },
     ],
