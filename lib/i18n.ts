@@ -214,17 +214,17 @@ export const translations = {
         },
         images: [
           "./images/GozellikSalonu/İmage1.JPG",
-          "./images/GozellikSalonu/İmage8.PNG",
-          "./images/GozellikSalonu/İmage9.PNG",
-          "./images/GozellikSalonu/İmage10.PNG",
-          "./images/GozellikSalonu/İmage11.PNG",
-          "./images/GozellikSalonu/İmage12.PNG",
-          "./images/GozellikSalonu/İmage2.PNG",
-          "./images/GozellikSalonu/İmage3.PNG",
-          "./images/GozellikSalonu/İmage4.PNG",
-          "./images/GozellikSalonu/İmage5.PNG",
-          "./images/GozellikSalonu/İmage6.PNG",
-          "./images/GozellikSalonu/İmage7.PNG"
+          "./images/GozellikSalonu/İmage8.JPG",
+          "./images/GozellikSalonu/İmage9.JPG",
+          "./images/GozellikSalonu/İmage10.JPG",
+          "./images/GozellikSalonu/İmage11.JPG",
+          "./images/GozellikSalonu/İmage12.JPG",
+          "./images/GozellikSalonu/İmage2.JPG",
+          "./images/GozellikSalonu/İmage3.JPG",
+          "./images/GozellikSalonu/İmage4.JPG",
+          "./images/GozellikSalonu/İmage5.JPG",
+          "./images/GozellikSalonu/İmage6.JPG",
+          "./images/GozellikSalonu/İmage7.JPG"
         ],
       },
       {
